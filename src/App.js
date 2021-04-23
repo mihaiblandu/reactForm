@@ -6,6 +6,7 @@ import {
   Switch,
 } from 'react-router-dom';
 import YouTubeForm from './tutorials/simpleForm/YouTubeForm';
+import YupYouTubeForm from './tutorials/yup/YouTubeForm';
 
 
 
@@ -26,14 +27,13 @@ export default function App() {
   return (
     <Router>
       <div className="App-header">
-
         <nav>
           <ul>
             <li className="App-nav">
               <Link to="/">Home</Link>
             </li>
             <li className="App-nav">
-              <Link to="/about">About</Link>
+              <Link to="/yup">Yup</Link>
             </li>
             <li className="App-nav">
               <Link to="/youtubeForm">Youtube Form</Link>
@@ -43,10 +43,12 @@ export default function App() {
 
 
         <Switch >
-          <Route path="/about">
-            <About/>
+          <Route path="/yup">
+            <h1>Yup</h1>
+            <YupYouTubeForm/>
           </Route>
           <Route path="/youtubeForm">
+          <h1>Simple Fomik</h1>
             <YouTubeForm />
           </Route>
           <Route path="/">

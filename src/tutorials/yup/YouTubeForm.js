@@ -1,45 +1,33 @@
 import React from 'react'
 import "./Form.css"
 import { Formik, FormikContext, useFormik } from 'formik'
+import * as Yup from 'yup';
 
-export default function YouTubeForm() {
+export default function YupYouTubeForm() {
+
+
+    const validationSchema = Yup.object({
+        name: Yup.string().required("Required!"),
+        email:  Yup.string().email("Invalide Email format").required("Required"),
+        channel: Yup.string().required("Required")
+
+    })
 
     const formik = useFormik({
         initialValues: {
-            name: "",
+            name: "Michael",
             email: "",
             channel: ""
-        },
-        validate: values => {
-            //values.name, ...
-            // errors.email errors.name errors.channel
-            let errors = {}
-
-            if (!values.name) {
-                errors.name = "Required"
-            }
-            if (!values.email) {
-
-                errors.email = 'Required';
-
-            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-
-                errors.email = 'Invalid email address';
-                console.log(errors);
-            }
-
-
-            if (!values.channel) {
-                errors.channel = "Required"
-            }
-            return errors
-        }
+        },validationSchema
         ,
         onSubmit: values => {
             console.log("Form data ", values);
 
         }
     })
+
+
+
     return (
         <div align="center">
             <form onSubmit={formik.handleSubmit}>
